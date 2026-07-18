@@ -101,6 +101,7 @@ return {
     config = function(_, opts)
       require("go").setup(opts)
 
+      -- Safe codelens for Neovim 0.11 (go.nvim uses enable() which is 0.12+)
       if vim.lsp.codelens and type(vim.lsp.codelens.refresh) == "function" and type(vim.lsp.codelens.enable) ~= "function" then
         vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave", "BufWritePost" }, {
           group = vim.api.nvim_create_augroup("GoCodeLensNvim011", { clear = true }),
@@ -114,6 +115,7 @@ return {
         })
       end
 
+      -- Buffer-local maps under <leader>go* so we never shadow LazyVim git keys
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "go", "gomod" },
         group = vim.api.nvim_create_augroup("GoNvimMaps", { clear = true }),
