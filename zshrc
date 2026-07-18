@@ -206,8 +206,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias tup='sudo tailscale up --accept-routes'
 alias tdown='sudo tailscale down'
 
-# dust if present
-command -v dust >/dev/null 2>&1 && alias du='dust'
 
 # -----------------------------------------------------------------------------
 # Tool initializations (order matters)

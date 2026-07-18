@@ -63,3 +63,9 @@ opt.foldlevelstart = 99
 -- Leaders (LazyVim defaults, explicit for clarity)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
+
+-- Prefer user-local tools (uv tool install ruff/debugpy, etc.) over missing system pkgs
+local local_bin = vim.fn.expand("~/.local/bin")
+if not vim.env.PATH:find(local_bin, 1, true) then
+  vim.env.PATH = local_bin .. ":" .. vim.env.PATH
+end

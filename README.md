@@ -20,7 +20,7 @@ Secrets, credentials, shell history, WakaTime config, and `.env` files are inten
 
 ## Motivation
 
-My yet another try to maintain my dotfiles online is about reducing setup friction. Reinstalls and spare machines should not require rebuilding aliases, prompt settings, and editor wiring from scratch. Keeping this layer in version control turns that work into a clone and a short install.
+Reinstalls and spare machines should not require rebuilding aliases, prompt settings, and editor wiring from scratch. Keeping this layer in version control turns that work into a clone and a short install.
 
 ## Quick start
 
@@ -44,9 +44,9 @@ Review the script before running it if you already manage configs manually, and 
 Not all of these are required, but the configs work best when they are available:
 
 - **Shell**: zsh, Starship, zsh-autosuggestions, zsh-syntax-highlighting, zsh-history-substring-search, zsh-completions
-- **CLI**: fzf, ripgrep, fd, bat, eza, zoxide, delta (git-delta), dust
+- **CLI**: fzf, ripgrep, fd, bat, eza, zoxide, delta (git-delta)
 - **Editor**: Neovim 0.11+, LazyVim (bootstrapped on first open via lazy.nvim)
-- **Terminal**: Kitty with a Nerd Font (for example FiraCode Nerd Font)
+- **Terminal**: Kitty with a Nerd Font (for example JetBrainsMono Nerd Font Mono)
 - **Languages** (as needed): Go, JDK, Node, Python, rustup, rbenv
 
 On Ubuntu or Debian:
@@ -66,8 +66,8 @@ Useful keys (see also `config/nvim/README.md`):
 
 - `<leader>fw` live grep, `<leader>fv` find files
 - `<leader>db` breakpoint, `<F5>` continue
-- `<leader>gt` Go test, `<leader>rj` run current Java file
-- `<leader>tt` / `<leader>tv` / `<leader>tf` terminals
+- `<leader>got` Go test, `<leader>rj` Java scratch run
+- `<leader>th` / `<leader>tv` / `<leader>tf` terminals
 
 ## Layout
 
@@ -80,7 +80,3 @@ If you reuse `gitconfig`, set `user.name` and `user.email` to your own identity 
 ## License
 
 Provided as-is for personal reuse. Adapt as needed.
-
----
-
-My yet another try to maintain my dotfiles online.
