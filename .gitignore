@@ -1,0 +1,14 @@
+# Never commit local secrets or machine-only junk
+.env
+.env.*
+*.pem
+*.key
+okta-pass
+.wakatime.cfg
+.wakatime/
+*.log
+.DS_Store
+.zcompdump*
+.zsh_history
+*.bak
+*.bak.*

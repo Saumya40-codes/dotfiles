@@ -1,0 +1,207 @@
+# =============================================================================
+# Starship - Catppuccin Mocha, powerline-style
+# Matches kitty + nvim catppuccin mocha theme
+# =============================================================================
+
+"$schema" = "https://starship.rs/config-schema.json"
+
+format = """
+[](fg:#89b4fa)\
+$os\
+$username\
+[](bg:#89b4fa fg:#89b4fa)\
+$directory\
+[](fg:#89b4fa bg:#313244)\
+$git_branch\
+$git_status\
+[](fg:#313244 bg:#45475a)\
+$c\
+$golang\
+$java\
+$nodejs\
+$python\
+$rust\
+$ruby\
+$docker_context\
+$kubernetes\
+[](fg:#45475a bg:#1e1e2e)\
+$cmd_duration\
+$time\
+[](fg:#1e1e2e)\
+$line_break\
+$character"""
+
+right_format = """$status$jobs$battery"""
+
+add_newline = true
+command_timeout = 1000
+palette = "catppuccin_mocha"
+
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo  = "#f2cdcd"
+pink      = "#f5c2e7"
+mauve     = "#cba6f7"
+red       = "#f38ba8"
+maroon    = "#eba0ac"
+peach     = "#fab387"
+yellow    = "#f9e2af"
+green     = "#a6e3a1"
+teal      = "#94e2d5"
+sky       = "#89dceb"
+sapphire  = "#74c7ec"
+blue      = "#89b4fa"
+lavender  = "#b4befe"
+text      = "#cdd6f4"
+subtext1  = "#bac2de"
+subtext0  = "#a6adc8"
+overlay2  = "#9399b2"
+overlay1  = "#7f849c"
+overlay0  = "#6c7086"
+surface2  = "#585b70"
+surface1  = "#45475a"
+surface0  = "#313244"
+base      = "#1e1e2e"
+mantle    = "#181825"
+crust     = "#11111b"
+
+# -----------------------------------------------------------------------------
+[os]
+disabled = false
+style = "bg:#89b4fa fg:#1e1e2e"
+
+[os.symbols]
+Linux = "󰌽 "
+Ubuntu = "󰕈 "
+Arch = "󰣇 "
+Debian = "󰣚 "
+Fedora = "󰣛 "
+Macos = "󰀵 "
+Windows = "󰍲 "
+
+[username]
+show_always = false
+style_user = "bg:#89b4fa fg:#1e1e2e bold"
+style_root = "bg:#f38ba8 fg:#1e1e2e bold"
+format = "[ $user ]($style)"
+
+[directory]
+style = "bg:#89b4fa fg:#1e1e2e bold"
+format = "[ $path ]($style)[$read_only]($read_only_style)"
+truncation_length = 3
+truncation_symbol = "…/"
+read_only = " 󰌾"
+read_only_style = "bg:#89b4fa fg:#f38ba8"
+home_symbol = " "
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+"Codes" = "󰨞 "
+"go" = " "
+
+[git_branch]
+symbol = " "
+style = "bg:#313244"
+format = "[[ $symbol$branch ](fg:#89b4fa bg:#313244)]($style)"
+
+[git_status]
+style = "bg:#313244"
+format = "[[($all_status$ahead_behind )](fg:#a6e3a1 bg:#313244)]($style)"
+conflicted = ""
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?"
+stashed = "≡"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+
+[golang]
+symbol = " "
+style = "bg:#45475a"
+format = "[[ $symbol($version) ](fg:#89dceb bg:#45475a)]($style)"
+detect_files = ["go.mod", "go.sum", "go.work", ".go-version"]
+
+[java]
+symbol = " "
+style = "bg:#45475a"
+format = "[[ $symbol($version) ](fg:#f38ba8 bg:#45475a)]($style)"
+
+[nodejs]
+symbol = " "
+style = "bg:#45475a"
+format = "[[ $symbol($version) ](fg:#a6e3a1 bg:#45475a)]($style)"
+
+[python]
+symbol = " "
+style = "bg:#45475a"
+format = "[[ $symbol($version)( \\($virtualenv\\)) ](fg:#f9e2af bg:#45475a)]($style)"
+
+[rust]
+symbol = " "
+style = "bg:#45475a"
+format = "[[ $symbol($version) ](fg:#fab387 bg:#45475a)]($style)"
+
+[ruby]
+symbol = " "
+style = "bg:#45475a"
+format = "[[ $symbol($version) ](fg:#f38ba8 bg:#45475a)]($style)"
+
+[c]
+symbol = " "
+style = "bg:#45475a"
+format = "[[ $symbol($version) ](fg:#89b4fa bg:#45475a)]($style)"
+detect_extensions = ["c", "h"]
+
+[docker_context]
+symbol = " "
+style = "bg:#45475a"
+format = "[[ $symbol$context ](fg:#89dceb bg:#45475a)]($style)"
+only_with_files = true
+
+[kubernetes]
+# Show only when KUBECONFIG / in-cluster context is active and env is set
+disabled = false
+symbol = "󱃾 "
+style = "bg:#45475a"
+format = '[[ $symbol$context( \($namespace\)) ](fg:#cba6f7 bg:#45475a)]($style)'
+detect_env_vars = ["KUBECONFIG", "KUBERNETES_SERVICE_HOST"]
+detect_files = ["Chart.yaml", "kustomization.yaml", "skaffold.yaml"]
+detect_folders = [".k8s"]
+
+[cmd_duration]
+min_time = 2_000
+style = "bg:#1e1e2e"
+format = "[[  $duration ](fg:#f9e2af bg:#1e1e2e)]($style)"
+
+[time]
+disabled = false
+time_format = "%H:%M"
+style = "bg:#1e1e2e"
+format = "[[  $time ](fg:#bac2de bg:#1e1e2e)]($style)"
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold green)"
+
+[status]
+disabled = false
+symbol = "✘ "
+style = "bold red"
+format = "[$symbol$common_meaning$signal_name$maybe_int]($style)"
+
+[jobs]
+symbol = "✦ "
+style = "bold blue"
+
+[battery]
+disabled = true
+
+[package]
+disabled = true

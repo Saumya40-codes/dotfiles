@@ -1,0 +1,75 @@
+[user]
+	name = Saumya Shah
+	email = saumyabshah90@gmail.com
+
+[init]
+	defaultBranch = main
+
+[core]
+	editor = nvim
+	pager = delta
+	# large repos / monorepos - keep a higher buffer if you push big objects
+	postBuffer = 524288000
+	autocrlf = input
+	excludesfile = ~/.gitignore_global
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	side-by-side = false
+	line-numbers = true
+	syntax-theme = Catppuccin Mocha
+	# fallback if theme missing: use a known dark theme
+	# syntax-theme = Monokai Extended
+	file-style = bold yellow ul
+	hunk-header-style = file line-number syntax
+	hyperlinks = true
+
+[delta "decorations"]
+	commit-decoration-style = bold yellow box ul
+	file-style = bold yellow ul
+	file-decoration-style = none
+
+[merge]
+	conflictstyle = zdiff3
+
+[diff]
+	colorMoved = default
+	algorithm = histogram
+
+[pull]
+	rebase = true
+
+[push]
+	autoSetupRemote = true
+	default = simple
+
+[fetch]
+	prune = true
+
+[rebase]
+	autoStash = true
+
+[rerere]
+	enabled = true
+
+[help]
+	autocorrect = 20
+
+[color]
+	ui = auto
+
+[alias]
+	st = status -sb
+	co = checkout
+	br = branch
+	ci = commit
+	lg = log --oneline --graph --decorate -20
+	last = log -1 HEAD --stat
+	unstage = reset HEAD --
+	amend = commit --amend --no-edit
+	undo = reset --soft HEAD~1
+	root = rev-parse --show-toplevel
+	aliases = !git config --get-regexp '^alias\\.' | sed 's/^alias\\.//'
