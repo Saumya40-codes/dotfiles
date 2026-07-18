@@ -1,6 +1,4 @@
--- Custom plugins & LazyVim overrides
 return {
-  -- Colorscheme: Catppuccin Mocha (drives LazyVim + lualine)
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -33,14 +31,8 @@ return {
     },
   },
 
-  -- Statusline: LazyVim defaults (theme = "auto"). Do not set theme = "catppuccin"
-  -- (not a valid lualine theme name; triggers :LualineNotices).
-
-  -- WakaTime coding stats
   { "wakatime/vim-wakatime", lazy = false },
 
-  -- Floating / split terminal
-  -- Keys avoid <leader>tt (LazyVim lang.java uses that for "Run All Test")
   {
     "akinsho/toggleterm.nvim",
     version = "*",
@@ -58,8 +50,6 @@ return {
     },
   },
 
-  -- Do NOT override nvim-dap config: LazyVim dap.core owns setup (mason-dap, signs, UI).
-  -- Only add the Go adapter + telescope-dap extension.
   {
     "leoluz/nvim-dap-go",
     opts = {},
@@ -71,23 +61,4 @@ return {
       pcall(require("telescope").load_extension, "dap")
     end,
   },
-
-  -- Optional Copilot (uncomment when needed)
-  -- {
-  --   "zbirenbaum/copilot.lua",
-  --   event = "InsertEnter",
-  --   opts = {
-  --     suggestion = {
-  --       enabled = true,
-  --       auto_trigger = true,
-  --       keymap = {
-  --         accept = "<Tab>",
-  --         next = "<M-]>",
-  --         prev = "<M-[>",
-  --         dismiss = "<C-]>",
-  --       },
-  --     },
-  --     panel = { enabled = false },
-  --   },
-  -- },
 }

@@ -1,18 +1,11 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Defaults: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Only add maps LazyVim does not already provide.
-
 local map = vim.keymap.set
 
--- Telescope muscle-memory (LazyVim also has <leader>f* snacks/telescope variants)
 map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "Live grep (words)" })
 map("n", "<leader>fv", "<cmd>Telescope find_files<CR>", { desc = "Find files" })
 
--- Keep scroll centered (does not break LazyVim searchforward n/N maps)
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
 
--- DAP F-keys (LazyVim already maps <leader>db / dB / du; keep F-keys + Go test debug)
 map("n", "<F5>", function()
   require("dap").continue()
 end, { desc = "DAP Continue" })
@@ -29,7 +22,6 @@ map("n", "<leader>dbg", function()
   require("dap-go").debug_test()
 end, { desc = "Debug Go Test" })
 
--- Java scratch helper: single-file / simple package only (prefer jdtls / build tool for real projects)
 map("n", "<leader>rj", function()
   if vim.bo.filetype ~= "java" then
     vim.notify("Not a Java buffer", vim.log.levels.WARN)
@@ -51,7 +43,6 @@ map("n", "<leader>rj", function()
     end
   end
   local classname = pkg and (pkg .. "." .. base) or base
-  -- shellescape avoids quote breakage; still a scratch helper, not a full build
   local cmd = string.format(
     "javac %s && java %s",
     vim.fn.shellescape(base .. ".java"),
@@ -60,7 +51,6 @@ map("n", "<leader>rj", function()
   vim.cmd("TermExec dir=" .. vim.fn.shellescape(dir) .. " cmd=" .. vim.fn.shellescape(cmd))
 end, { desc = "Run Java File (scratch)" })
 
--- ToggleTerm (avoid <leader>tt: Java extra uses it for Run All Test)
 map("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", { desc = "Terminal (horizontal)" })
 map("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical size=60<CR>", { desc = "Terminal (vertical)" })
 map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>", { desc = "Terminal (float)" })

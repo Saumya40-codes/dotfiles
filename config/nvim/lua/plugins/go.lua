@@ -1,5 +1,79 @@
 return {
   {
+    "neovim/nvim-lspconfig",
+    opts = {
+      diagnostics = {
+        virtual_text = {
+          spacing = 4,
+          source = "if_many",
+          prefix = "●",
+          severity = { min = vim.diagnostic.severity.WARN },
+          format = function(diagnostic)
+            local msg = diagnostic.message or ""
+            msg = msg:gsub("\n.*", "")
+            if #msg > 120 then
+              msg = msg:sub(1, 117) .. "..."
+            end
+            return msg
+          end,
+        },
+        severity_sort = true,
+        float = {
+          source = true,
+          border = "rounded",
+          header = "",
+          prefix = "",
+        },
+      },
+      servers = {
+        gopls = {
+          settings = {
+            gopls = {
+              analyses = {
+                nilness = false,
+                unusedparams = true,
+                unusedwrite = true,
+                useany = true,
+                shadow = false,
+              },
+              staticcheck = true,
+              codelenses = {
+                gc_details = false,
+                generate = true,
+                regenerate_cgo = false,
+                run_govulncheck = false,
+                test = true,
+                tidy = true,
+                upgrade_dependency = false,
+                vendor = false,
+              },
+              hints = {
+                assignVariableTypes = false,
+                compositeLiteralFields = true,
+                compositeLiteralTypes = false,
+                constantValues = true,
+                functionTypeParameters = false,
+                parameterNames = true,
+                rangeVariableTypes = false,
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+
+  {
+    "mfussenegger/nvim-lint",
+    optional = true,
+    opts = function(_, opts)
+      opts.linters_by_ft = opts.linters_by_ft or {}
+      opts.linters_by_ft.go = {}
+      return opts
+    end,
+  },
+
+  {
     "ray-x/go.nvim",
     dependencies = {
       "ray-x/guihua.lua",
@@ -14,22 +88,32 @@ return {
       fillstruct = "gopls",
       gofmt = "gofumpt",
       tag_transform = false,
-      -- lang.go extra starts gopls via LazyVim/mason; keep go.nvim LSP off to avoid double gopls
       lsp_cfg = false,
       lsp_gofumpt = true,
       lsp_inlay_hints = { enable = true },
+      lsp_codelens = false,
       dap_debug = true,
-      -- LazyVim dap.core owns UI + keymaps; do not let go.nvim install temporary single-key maps
       dap_debug_gui = false,
       dap_debug_keymap = false,
       trouble = true,
-      luasnip = false, -- stack uses blink.cmp, not LuaSnip
+      luasnip = false,
     },
     config = function(_, opts)
       require("go").setup(opts)
 
-      -- Buffer-local maps under <leader>go* so we never shadow LazyVim git keys
-      -- (<leader>gf file history, <leader>gc commits, etc.)
+      if vim.lsp.codelens and type(vim.lsp.codelens.refresh) == "function" and type(vim.lsp.codelens.enable) ~= "function" then
+        vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave", "BufWritePost" }, {
+          group = vim.api.nvim_create_augroup("GoCodeLensNvim011", { clear = true }),
+          pattern = { "*.go", "go.mod" },
+          callback = function(ev)
+            local clients = vim.lsp.get_clients({ bufnr = ev.buf, name = "gopls" })
+            if #clients > 0 then
+              pcall(vim.lsp.codelens.refresh, { bufnr = ev.buf })
+            end
+          end,
+        })
+      end
+
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "go", "gomod" },
         group = vim.api.nvim_create_augroup("GoNvimMaps", { clear = true }),
