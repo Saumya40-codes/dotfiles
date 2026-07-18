@@ -1,6 +1,0 @@
--- Autocmds are automatically loaded on the VeryLazy event.
--- LazyVim already provides yank highlight, close-with-q, auto-create dirs.
--- Keep this file for project-specific autocmds only.
---
--- Mason toast filtering lives in lua/plugins/ui.lua (snacks.notifier.filter).
--- A vim.notify wrap here is ineffective: snacks.nvim replaces vim.notify after load.
