@@ -16,9 +16,9 @@ Stack: **Neovim 0.11+**, **LazyVim**, **lazy.nvim**, **Catppuccin Mocha**.
 
 ## Languages
 
-- **Go**: `ray-x/go.nvim` (`<leader>gt/gi/gf/gr`, DAP via `<leader>db`, `<F5>`)
-- **Java**: LazyVim `lang.java` extra (jdtls via Mason) + `<leader>rj` run file
-- **Others**: docker, json, yaml, python, rust, toml, markdown, git extras
+- **Go**: LazyVim `lang.go` (gopls via Mason) + `ray-x/go.nvim` helpers (`<leader>go*`)
+- **Java**: LazyVim `lang.java` extra (jdtls via Mason) + `<leader>rj` scratch run
+- **Others**: docker, json, yaml, python, rust, toml, markdown, git, dap extras
 
 Open `:Mason` and install recommended tools (gopls, gofumpt, jdtls, …).
 
@@ -28,11 +28,14 @@ Open `:Mason` and install recommended tools (gopls, gofumpt, jdtls, …).
 |-----|--------|
 | `<leader>fw` | Live grep |
 | `<leader>fv` | Find files |
-| `<leader>db` | Toggle breakpoint |
-| `<leader>du` | DAP UI |
-| `<leader>tt/tv/tf` | ToggleTerm H/V/float |
+| `<leader>db` | Toggle breakpoint (LazyVim) |
+| `<leader>du` | DAP UI (LazyVim) |
+| `<F5>` / `<F10>`-`<F12>` | DAP continue / step |
+| `<leader>dbg` | Debug Go test |
+| `<leader>got` / `gof` / `gor` | Go test / format / run |
+| `<leader>th` / `tv` / `tf` | ToggleTerm H/V/float |
 | `<C-\>` | ToggleTerm default map |
-| `<leader>gt` | Go test |
+| `<leader>rj` | Java scratch compile+run |
 
 ## Sync
 

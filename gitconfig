@@ -8,7 +8,7 @@
 [core]
 	editor = nvim
 	pager = delta
-	# large repos / monorepos - keep a higher buffer if you push big objects
+	# large repos / monorepos — keep a higher buffer if you push big objects
 	postBuffer = 524288000
 	autocrlf = input
 	excludesfile = ~/.gitignore_global

@@ -1,3 +1,22 @@
+-- Prefer fd/fdfind when available; otherwise leave Telescope/LazyVim defaults.
+local function find_command()
+  if vim.fn.executable("fd") == 1 then
+    return { "fd", "--type", "f", "--hidden", "--follow", "--exclude", ".git" }
+  end
+  if vim.fn.executable("fdfind") == 1 then
+    return { "fdfind", "--type", "f", "--hidden", "--follow", "--exclude", ".git" }
+  end
+  return nil
+end
+
+local find_files = {
+  hidden = true,
+}
+local cmd = find_command()
+if cmd then
+  find_files.find_command = cmd
+end
+
 return {
   {
     "nvim-telescope/telescope.nvim",
@@ -22,10 +41,7 @@ return {
         },
       },
       pickers = {
-        find_files = {
-          hidden = true,
-          find_command = { "fd", "--type", "f", "--hidden", "--follow", "--exclude", ".git" },
-        },
+        find_files = find_files,
       },
     },
   },

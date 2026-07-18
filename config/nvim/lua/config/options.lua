@@ -45,7 +45,7 @@ opt.fillchars = {
 opt.updatetime = 200
 opt.timeoutlen = 300
 
--- Go-friendly list of filetypes that prefer tabs (go fmt)
+-- Go prefers tabs (gofmt)
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "go",
   callback = function()
@@ -55,16 +55,11 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Prefer treesitter folds when available
-opt.foldmethod = "expr"
-opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- Folds: leave foldmethod/foldexpr to LazyVim treesitter (set on attach when safe).
+-- Do not set v:lua.LazyVim.treesitter.foldexpr() here; options load before LazyVim exists.
 opt.foldlevel = 99
 opt.foldlevelstart = 99
 
 -- Leaders (LazyVim defaults, explicit for clarity)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
-
--- LazyVim: use snacks picker / explorer as needed; keep telescope via extra
--- Disable animations if you prefer snappier UI
--- vim.g.snacks_animate = false

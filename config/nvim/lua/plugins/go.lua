@@ -14,24 +14,38 @@ return {
       fillstruct = "gopls",
       gofmt = "gofumpt",
       tag_transform = false,
+      -- lang.go extra starts gopls via LazyVim/mason; keep go.nvim LSP off to avoid double gopls
+      lsp_cfg = false,
       lsp_gofumpt = true,
       lsp_inlay_hints = { enable = true },
       dap_debug = true,
-      dap_debug_gui = true,
+      -- LazyVim dap.core owns UI + keymaps; do not let go.nvim install temporary single-key maps
+      dap_debug_gui = false,
+      dap_debug_keymap = false,
       trouble = true,
-      luasnip = true,
+      luasnip = false, -- stack uses blink.cmp, not LuaSnip
     },
     config = function(_, opts)
       require("go").setup(opts)
 
-      local map = vim.keymap.set
-      map("n", "<leader>gt", "<cmd>GoTest<CR>", { silent = true, desc = "Go Test" })
-      map("n", "<leader>gT", "<cmd>GoTestFunc<CR>", { silent = true, desc = "Go Test Func" })
-      map("n", "<leader>gi", "<cmd>GoImports<CR>", { silent = true, desc = "Go Imports" })
-      map("n", "<leader>gf", "<cmd>GoFormat<CR>", { silent = true, desc = "Go Format" })
-      map("n", "<leader>gr", "<cmd>GoRun<CR>", { silent = true, desc = "Go Run" })
-      map("n", "<leader>gc", "<cmd>GoCoverage<CR>", { silent = true, desc = "Go Coverage" })
-      map("n", "<leader>gie", "<cmd>GoIfErr<CR>", { silent = true, desc = "Go If Err" })
+      -- Buffer-local maps under <leader>go* so we never shadow LazyVim git keys
+      -- (<leader>gf file history, <leader>gc commits, etc.)
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "go", "gomod" },
+        group = vim.api.nvim_create_augroup("GoNvimMaps", { clear = true }),
+        callback = function(ev)
+          local map = function(lhs, rhs, desc)
+            vim.keymap.set("n", lhs, rhs, { buffer = ev.buf, silent = true, desc = desc })
+          end
+          map("<leader>got", "<cmd>GoTest<CR>", "Go Test")
+          map("<leader>goT", "<cmd>GoTestFunc<CR>", "Go Test Func")
+          map("<leader>goi", "<cmd>GoImports<CR>", "Go Imports")
+          map("<leader>gof", "<cmd>GoFormat<CR>", "Go Format")
+          map("<leader>gor", "<cmd>GoRun<CR>", "Go Run")
+          map("<leader>goc", "<cmd>GoCoverage<CR>", "Go Coverage")
+          map("<leader>goe", "<cmd>GoIfErr<CR>", "Go If Err")
+        end,
+      })
     end,
   },
 }
