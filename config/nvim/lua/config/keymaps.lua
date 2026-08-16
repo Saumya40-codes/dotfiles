@@ -32,6 +32,11 @@ map("n", "<leader>rj", function()
     vim.notify("Save the file first", vim.log.levels.WARN)
     return
   end
+
+  if vim.bo.modified then
+    vim.cmd.write()
+  end
+
   local dir = vim.fn.fnamemodify(path, ":h")
   local base = vim.fn.fnamemodify(path, ":t:r")
   local lines = vim.api.nvim_buf_get_lines(0, 0, 30, false)
@@ -43,9 +48,13 @@ map("n", "<leader>rj", function()
     end
   end
   local classname = pkg and (pkg .. "." .. base) or base
+  local output = vim.fn.stdpath("cache") .. "/java-run"
+  vim.fn.mkdir(output, "p")
   local cmd = string.format(
-    "javac %s && java %s",
-    vim.fn.shellescape(base .. ".java"),
+    "javac -d %s %s && java -cp %s %s",
+    vim.fn.shellescape(output),
+    vim.fn.shellescape(path),
+    vim.fn.shellescape(output),
     vim.fn.shellescape(classname)
   )
   vim.cmd("TermExec dir=" .. vim.fn.shellescape(dir) .. " cmd=" .. vim.fn.shellescape(cmd))

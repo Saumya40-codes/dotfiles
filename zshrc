@@ -100,13 +100,9 @@ fpath=(
 )
 
 autoload -Uz compinit
-# Cache completion dump; rebuild weekly or if missing
+# Use the cached completion dump while retaining compaudit's permission checks.
 _comp_dump="${ZDOTDIR:-$HOME}/.zcompdump"
-if [[ ! -f $_comp_dump || -n $_comp_dump(#qN.mh+168) ]]; then
-  compinit -d "$_comp_dump"
-else
-  compinit -C -d "$_comp_dump"
-fi
+compinit -d "$_comp_dump"
 
 zmodload zsh/complist
 zstyle ':completion:*' menu select

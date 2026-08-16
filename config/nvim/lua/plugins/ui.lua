@@ -13,8 +13,6 @@ return {
               or blob:find("successfully uninstalled", 1, true)
               or blob:find("installing ", 1, true)
               or blob:find("automatically installing", 1, true)
-              or blob:find("failed to install ruff", 1, true)
-              or blob:find("failed to install debugpy", 1, true)
             then
               return false
             end

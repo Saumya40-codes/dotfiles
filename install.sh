@@ -4,7 +4,8 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-TS="$(date +%Y%m%d%H%M%S)"
+# Nanoseconds plus the process ID keep backups unique across rapid re-runs.
+TS="$(date +%Y%m%d%H%M%S%N).$$"
 
 backup_and_link() {
   local src="$1"

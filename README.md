@@ -47,7 +47,7 @@ Not all of these are required, but the configs work best when they are available
 - **CLI**: fzf, ripgrep, fd, bat, eza, zoxide, delta (git-delta)
 - **Editor**: Neovim 0.11+, LazyVim (bootstrapped on first open via lazy.nvim)
 - **Terminal**: Kitty with a Nerd Font (for example JetBrainsMono Nerd Font Mono)
-- **Languages** (as needed): Go, JDK, Node, Python, rustup, rbenv
+- **Languages** (as needed): Go, JDK, Node, Python with `ruff` and `debugpy`, rustup, rbenv
 
 On Ubuntu or Debian:
 

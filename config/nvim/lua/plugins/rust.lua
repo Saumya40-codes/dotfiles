@@ -3,14 +3,17 @@ return {
     "mrcjkb/rustaceanvim",
     opts = function(_, opts)
       opts.server = opts.server or {}
+
       opts.server.default_settings = vim.tbl_deep_extend("force", opts.server.default_settings or {}, {
         ["rust-analyzer"] = {
           cargo = {
             allFeatures = true,
           },
+
           check = {
             command = "clippy",
           },
+
           inlayHints = {
             bindingModeHints = {
               enable = true,
@@ -27,30 +30,57 @@ return {
       })
 
       local existing_on_attach = opts.server.on_attach
+
       opts.server.on_attach = function(client, bufnr)
         if existing_on_attach then
           existing_on_attach(client, bufnr)
         end
 
+        -- Keep Rust's presentation from altering diagnostics for other LSPs.
+        vim.diagnostic.config({
+          virtual_text = false,
+          underline = true,
+          update_in_insert = false,
+          severity_sort = true,
+          signs = true,
+          float = {
+            border = "rounded",
+            source = "if_many",
+            focusable = false,
+          },
+        }, vim.lsp.diagnostic.get_namespace(client.id))
+
         local map = function(lhs, rhs, desc)
-          vim.keymap.set("n", lhs, rhs, { buffer = bufnr, silent = true, desc = desc })
+          vim.keymap.set("n", lhs, rhs, {
+            buffer = bufnr,
+            silent = true,
+            desc = desc,
+          })
         end
 
         map("<leader>rr", function()
           vim.cmd.RustLsp("runnables")
         end, "Rust Runnables")
+
         map("<leader>rt", function()
           vim.cmd.RustLsp("testables")
         end, "Rust Testables")
+
         map("<leader>rd", function()
           vim.cmd.RustLsp("debuggables")
         end, "Rust Debuggables")
+
         map("<leader>re", function()
           vim.cmd.RustLsp("explainError")
         end, "Rust Explain Error")
+
         map("<leader>rD", function()
           vim.cmd.RustLsp("openDocs")
         end, "Rust Open Docs")
+
+        map("gl", vim.diagnostic.open_float, "Line Diagnostics")
+        map("[d", vim.diagnostic.goto_prev, "Previous Diagnostic")
+        map("]d", vim.diagnostic.goto_next, "Next Diagnostic")
       end
 
       return opts
@@ -75,21 +105,29 @@ return {
           end
 
           local map = function(lhs, rhs, desc)
-            vim.keymap.set("n", lhs, rhs, { buffer = ev.buf, silent = true, desc = desc })
+            vim.keymap.set("n", lhs, rhs, {
+              buffer = ev.buf,
+              silent = true,
+              desc = desc,
+            })
           end
 
           map("<leader>ct", function()
             require("crates").toggle()
           end, "Crates Toggle")
+
           map("<leader>cu", function()
             require("crates").upgrade_crate()
           end, "Crates Upgrade")
+
           map("<leader>cU", function()
             require("crates").upgrade_all_crates()
           end, "Crates Upgrade All")
+
           map("<leader>cv", function()
             require("crates").show_versions_popup()
           end, "Crates Versions")
+
           map("<leader>cf", function()
             require("crates").show_features_popup()
           end, "Crates Features")
