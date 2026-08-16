@@ -192,6 +192,7 @@ alias ipy='ipython'
 
 # quality of life
 alias c='clear'
+alias history='fc -l -50'
 alias h='history'
 alias path='print -l $path'
 alias ports='ss -tulpn'
