@@ -9,7 +9,6 @@ Personal configuration for a Linux development environment: shell, prompt, edito
 | Path | Description |
 |------|-------------|
 | `zshrc` | Interactive zsh: PATH, history, completion, aliases, fzf, zoxide, plugins, Starship |
-| `gitconfig` | Git defaults, aliases, and delta as the pager |
 | `gitignore_global` | Global ignore patterns |
 | `config/starship.toml` | Starship prompt (Catppuccin Mocha) |
 | `config/nvim/` | Neovim (LazyVim), Catppuccin, Go/Java helpers, DAP, Telescope |
@@ -63,7 +62,7 @@ Modern CLI tools can also be installed as release binaries into `~/.local/bin`.
 - **Shell and terminal**: zsh, Starship, and Kitty with the Catppuccin Mocha theme.
 - **Editor**: Neovim 0.11+ with LazyVim, LSP/DAP tooling, and Go, Java, Python, and Rust customizations.
 - **AI coding**: OpenCode is installed under `~/.opencode/bin`; `zshrc` adds it to `PATH`.
-- **Version control**: Git uses delta, rebase-on-pull, `rerere`, and a global ignore file.
+- **Version control**: Git identity and preferences are local; the global ignore file is tracked here.
 - **Language tooling**: Go, JDK, Node, Python with Ruff and debugpy, rustup, and rbenv are used as needed.
 
 ## Neovim
@@ -83,7 +82,7 @@ Paths in this repository mirror their install destinations so `install.sh` stays
 
 ## Safety
 
-If you reuse `gitconfig`, set `user.name` and `user.email` to your own identity before committing. Do not put tokens or private keys in tracked files; keep them in untracked local config or a secret store.
+Keep Git identity, tokens, and private keys in untracked local configuration or a secret store.
 
 ## License
 

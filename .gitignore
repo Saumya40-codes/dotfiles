@@ -1,4 +1,5 @@
 # Never commit local secrets or machine-only junk
+/gitconfig
 .env
 .env.*
 *.pem

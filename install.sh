@@ -26,7 +26,6 @@ backup_and_link() {
 echo "Installing dotfiles from $ROOT"
 
 backup_and_link "$ROOT/zshrc"            "$HOME/.zshrc"
-backup_and_link "$ROOT/gitconfig"        "$HOME/.gitconfig"
 backup_and_link "$ROOT/gitignore_global" "$HOME/.gitignore_global"
 backup_and_link "$ROOT/config/starship.toml" "$HOME/.config/starship.toml"
 backup_and_link "$ROOT/config/nvim"      "$HOME/.config/nvim"
