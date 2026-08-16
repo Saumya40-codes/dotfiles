@@ -58,6 +58,14 @@ sudo apt install zsh fzf ripgrep fd-find
 
 Modern CLI tools can also be installed as release binaries into `~/.local/bin`.
 
+## Development setup
+
+- **Shell and terminal**: zsh, Starship, and Kitty with the Catppuccin Mocha theme.
+- **Editor**: Neovim 0.11+ with LazyVim, LSP/DAP tooling, and Go, Java, Python, and Rust customizations.
+- **AI coding**: OpenCode is installed under `~/.opencode/bin`; `zshrc` adds it to `PATH`.
+- **Version control**: Git uses delta, rebase-on-pull, `rerere`, and a global ignore file.
+- **Language tooling**: Go, JDK, Node, Python with Ruff and debugpy, rustup, and rbenv are used as needed.
+
 ## Neovim
 
 LazyVim-based setup with Catppuccin Mocha, language extras (Java, Docker, JSON, YAML, Python, Rust, and related), `ray-x/go.nvim`, toggleterm, and DAP. After install, open Neovim once and let `:Lazy` finish bootstrapping. Use `:Mason` for language servers and formatters.
