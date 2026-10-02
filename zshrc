@@ -10,7 +10,6 @@
 typeset -U path PATH
 path=(
   "$HOME/.local/bin"
-  "$HOME/.opencode/bin"
   "$HOME/.local/kitty.app/bin"
   "$HOME/.grok/bin"
   "$HOME/.cargo/bin"
