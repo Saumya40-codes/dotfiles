@@ -62,7 +62,6 @@ Modern CLI tools can also be installed as release binaries into `~/.local/bin`.
 
 - **Shell and terminal**: zsh, Starship, and Ghostty or Kitty with the Catppuccin Mocha theme.
 - **Editor**: Neovim 0.11+ with LazyVim, LSP/DAP tooling, and Go, Java, Python, and Rust customizations.
-- **AI coding**: OpenCode is installed under `~/.opencode/bin`; `zshrc` adds it to `PATH`.
 - **Version control**: Git identity and preferences are local; the global ignore file is tracked here.
 - **Language tooling**: Go, JDK, Node, Python with Ruff and debugpy, rustup, and rbenv are used as needed.
 
