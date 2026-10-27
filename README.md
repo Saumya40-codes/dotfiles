@@ -13,6 +13,7 @@ Personal configuration for a Linux development environment: shell, prompt, edito
 | `config/starship.toml` | Starship prompt (Catppuccin Mocha) |
 | `config/nvim/` | Neovim (LazyVim), Catppuccin, Go/Java helpers, DAP, Telescope |
 | `config/kitty/` | Kitty terminal font, opacity, and Catppuccin Mocha colors |
+| `config/ghostty/` | Ghostty with Catppuccin Mocha, matching window chrome, padding, and split shortcuts |
 | `install.sh` | Symlink installer with timestamped backups |
 
 Secrets, credentials, shell history, WakaTime config, and `.env` files are intentionally not tracked.
@@ -45,7 +46,7 @@ Not all of these are required, but the configs work best when they are available
 - **Shell**: zsh, Starship, zsh-autosuggestions, zsh-syntax-highlighting, zsh-history-substring-search, zsh-completions
 - **CLI**: fzf, ripgrep, fd, bat, eza, zoxide, delta (git-delta)
 - **Editor**: Neovim 0.11+, LazyVim (bootstrapped on first open via lazy.nvim)
-- **Terminal**: Kitty with a Nerd Font (for example JetBrainsMono Nerd Font Mono)
+- **Terminal**: Ghostty or Kitty with a Nerd Font (for example JetBrainsMono Nerd Font Mono)
 - **Languages** (as needed): Go, JDK, Node, Python with `ruff` and `debugpy`, rustup, rbenv
 
 On Ubuntu or Debian:
@@ -59,7 +60,7 @@ Modern CLI tools can also be installed as release binaries into `~/.local/bin`.
 
 ## Development setup
 
-- **Shell and terminal**: zsh, Starship, and Kitty with the Catppuccin Mocha theme.
+- **Shell and terminal**: zsh, Starship, and Ghostty or Kitty with the Catppuccin Mocha theme.
 - **Editor**: Neovim 0.11+ with LazyVim, LSP/DAP tooling, and Go, Java, Python, and Rust customizations.
 - **AI coding**: OpenCode is installed under `~/.opencode/bin`; `zshrc` adds it to `PATH`.
 - **Version control**: Git identity and preferences are local; the global ignore file is tracked here.

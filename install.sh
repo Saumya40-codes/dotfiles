@@ -30,6 +30,7 @@ backup_and_link "$ROOT/gitignore_global" "$HOME/.gitignore_global"
 backup_and_link "$ROOT/config/starship.toml" "$HOME/.config/starship.toml"
 backup_and_link "$ROOT/config/nvim"      "$HOME/.config/nvim"
 backup_and_link "$ROOT/config/kitty"     "$HOME/.config/kitty"
+backup_and_link "$ROOT/config/ghostty"   "$HOME/.config/ghostty"
 
 echo
 echo "Done. Open a new shell (or run: exec zsh) so changes take effect."
