@@ -10,6 +10,7 @@ window-padding-y = 10
 
 # Interaction
 mouse-hide-while-typing = true
+copy-on-select = clipboard
 
 # 50 MB of scrollback history
 scrollback-limit = 50000000
