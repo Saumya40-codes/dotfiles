@@ -1,0 +1,21 @@
+onboarding = false
+
+[ui.toast]
+delivery = "herdr"
+
+[theme]
+name = "nord"
+auto_switch = false
+
+[terminal]
+new_cwd = "follow"
+
+[ui]
+# accent = "blue"
+pane_outer_borders = true
+pane_scrollbars = true
+confirm_close = false
+prompt_new_tab_name = false
+mouse_capture = true
+tab_bar_right = [{ type = "zoom" }, { type = "hostname" }]
+window_title = "{hostname}: {workspace}"

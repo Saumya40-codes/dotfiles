@@ -1,0 +1,43 @@
+onboarding = false
+
+[ui.toast]
+delivery = "herdr"
+
+[theme]
+name = "gruvbox"
+auto_switch = false
+
+# Gruvbox (hard, dark) palette from github.com/Codesmith28/gruvbox-herdr-app
+[theme.custom]
+panel_bg = "#1d2021"
+sidebar_bg = "#161819"
+surface_dim = "#161819"
+active_row_bg = "#282828"
+selection_bg = "#504945"
+surface0 = "#3c3836"
+surface1 = "#504945"
+overlay0 = "#7c6f64"
+overlay1 = "#928374"
+text = "#ebdbb2"
+subtext0 = "#a89984"
+accent = "#fe8019"
+peach = "#fe8019"
+red = "#fb4934"
+green = "#b8bb26"
+yellow = "#fabd2f"
+blue = "#83a598"
+teal = "#8ec07c"
+mauve = "#d3869b"
+
+[terminal]
+new_cwd = "follow"
+
+[ui]
+# accent = "blue"
+pane_outer_borders = true
+pane_scrollbars = true
+confirm_close = false
+prompt_new_tab_name = false
+mouse_capture = true
+tab_bar_right = [{ type = "zoom" }, { type = "hostname" }]
+window_title = "{hostname}: {workspace}"
