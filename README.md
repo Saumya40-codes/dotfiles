@@ -14,6 +14,7 @@ Personal configuration for a Linux development environment: shell, prompt, edito
 | `config/nvim/` | Neovim (LazyVim), Catppuccin, Go/Java helpers, DAP, Telescope |
 | `config/kitty/` | Kitty terminal font, opacity, and Catppuccin Mocha colors |
 | `config/ghostty/` | Ghostty with Catppuccin Mocha, matching window chrome, padding, and split shortcuts |
+| `config/herdr/config.toml` | herdr terminal workspace manager: Gruvbox (hard dark) theme, pane borders/scrollbars, tab bar and window title |
 | `install.sh` | Symlink installer with timestamped backups |
 
 Secrets, credentials, shell history, WakaTime config, and `.env` files are intentionally not tracked.
